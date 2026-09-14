@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { SiteHeader } from "../components/SiteHeader";
 import { GLOSSARY } from "@/lib/glossary";
 import styles from "./page.module.css";
@@ -13,6 +14,10 @@ export default function Glosario() {
   return (
     <main>
       <SiteHeader />
+
+      <nav className={styles.back}>
+        <Link href="/">← Volver a la portada</Link>
+      </nav>
 
       <div className={styles.intro}>
         <h1>Glosario</h1>

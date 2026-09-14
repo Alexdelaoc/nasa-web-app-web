@@ -20,6 +20,10 @@ export default async function Aproximaciones() {
     <main>
       <SiteHeader />
 
+      <nav className={styles.back}>
+        <Link href="/">← Volver a la portada</Link>
+      </nav>
+
       <div className={styles.head}>
         <p className={`label ${styles.kicker}`}>Próximos 60 días</p>
         <h1>Aproximaciones a la Tierra</h1>
@@ -36,10 +40,6 @@ export default async function Aproximaciones() {
       </div>
 
       <ApproachTable approaches={approaches} />
-
-      <p className={styles.back}>
-        <Link href="/">← Volver a la portada</Link>
-      </p>
 
       <footer className={`label ${styles.footer}`}>
         Fuente · CNEOS Close Approach Data
