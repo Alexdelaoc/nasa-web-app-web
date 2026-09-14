@@ -1,9 +1,61 @@
 .introBand {
   border-bottom: 1px solid var(--rule);
-  padding: 18px var(--gutter);
+}
+
+.apodLink {
+  display: block;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--night);
+  border-top: 1px solid var(--rule);
+  overflow: hidden;
+}
+
+/* Blurred at rest so the picture stays subordinate to the text, sharp the
+   moment you reach for it. `:active` is the touch equivalent of hover: pressing
+   brings it into focus, releasing follows the link. */
+.apodPhoto {
+  object-fit: cover;
+  filter: blur(7px);
+  transition: filter 220ms ease-out;
+}
+
+.apodLink:hover .apodPhoto,
+.apodLink:focus-visible .apodPhoto,
+.apodLink:active .apodPhoto {
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .apodPhoto {
+    transition: none;
+  }
+}
+
+.apodCaption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 14px var(--gutter);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: linear-gradient(to top, rgba(15, 13, 11, 0.92), transparent);
+}
+
+.apodKicker {
+  color: var(--action-light);
+}
+
+.apodTitle {
+  color: var(--paper);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-wrap: pretty;
 }
 
 .intro {
+  padding: 18px var(--gutter);
   font-family: var(--font-pt-serif), Georgia, serif;
   font-size: 16px;
   line-height: 1.5;
@@ -69,7 +121,9 @@
 .caption {
   caption-side: bottom;
   text-align: left;
-  padding-top: 10px;
+  /* The table runs edge to edge on mobile, so the note needs its own gutter.
+     On wider screens the wrapper already provides it. */
+  padding: 10px var(--gutter) 0;
   color: color-mix(in oklab, var(--ink) 55%, transparent);
 }
 
@@ -246,12 +300,24 @@
 
 /* --- escritorio --- */
 @media (min-width: 900px) {
-        .introBand {
-    padding: 26px var(--gutter);
+  .introBand {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    align-items: stretch;
   }
 
   .intro {
+    padding: 26px var(--gutter);
     font-size: 17px;
+  }
+
+  .apodLink {
+    /* The band is otherwise only as tall as three lines of text, which leaves
+       the photograph as a sliver. */
+    aspect-ratio: auto;
+    min-height: 220px;
+    border-top: 0;
+    border-left: 1px solid var(--rule);
   }
 
   .question {
@@ -261,6 +327,10 @@
   .tableWrap {
     padding: 22px var(--gutter) 0;
     overflow-x: auto;
+  }
+
+  .caption {
+    padding-inline: 0;
   }
 
   .table thead {
@@ -370,4 +440,10 @@
 
 .entry:hover .entryTitle {
   color: var(--action);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .apodPhoto {
+    transition: none;
+  }
 }

@@ -1,5 +1,12 @@
+import Image from "next/image";
 import Link from "next/link";
-import { getCloseApproaches, toSlug, type CloseApproach } from "@/lib/api";
+import {
+  getApod,
+  getCloseApproaches,
+  toSlug,
+  type AstronomyPicture,
+  type CloseApproach,
+} from "@/lib/api";
 import { formatNumber, formatUtc } from "@/lib/format";
 import { OrbitDiagram } from "./components/OrbitDiagram";
 import { SiteHeader } from "./components/SiteHeader";
@@ -87,8 +94,39 @@ function ApproachRow({ approach }: { approach: CloseApproach }) {
   );
 }
 
+/**
+ * The photograph is dimmed at rest so it stays subordinate to the text beside
+ * it, and returns to full brightness on hover or keyboard focus.
+ */
+function ApodIsland({ picture }: { picture: AstronomyPicture }) {
+  return (
+    <Link href="/imagen-del-dia" className={styles.apodLink}>
+      {picture.mediaType === "image" ? (
+        <Image
+          src={picture.url}
+          alt=""
+          fill
+          sizes="(min-width: 900px) 420px, 100vw"
+          className={styles.apodPhoto}
+          loading="eager"
+          fetchPriority="high"
+        />
+      ) : null}
+      <div className={styles.apodCaption}>
+        <span className={`label ${styles.apodKicker}`}>Imagen del día</span>
+        <span className={styles.apodTitle} lang="en">
+          {picture.title}
+        </span>
+      </div>
+    </Link>
+  );
+}
+
 export default async function Home() {
-  const approaches = await getCloseApproaches();
+  const [approaches, picture] = await Promise.all([
+    getCloseApproaches(),
+    getApod(),
+  ]);
   const shown = approaches?.slice(0, ROWS_ON_HOMEPAGE) ?? [];
 
   return (
@@ -101,6 +139,7 @@ export default async function Home() {
           y de los meteoritos que han llegado a caer, con datos abiertos de la
           NASA y el JPL.
         </p>
+        {picture ? <ApodIsland picture={picture} /> : null}
       </div>
 
       <div className={styles.question}>

@@ -1,0 +1,126 @@
+.head {
+  padding: 22px var(--gutter);
+  border-bottom: 2px solid var(--ink);
+}
+
+.back {
+  padding: 12px var(--gutter);
+  border-bottom: 1px solid var(--rule);
+}
+
+.backLink {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.island {
+  margin: 0;
+  background: var(--night);
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-bottom: 2px solid var(--ink);
+  overflow: hidden;
+}
+
+/* APOD entries range from wide panoramas to tall infographics, so the picture
+   is fitted whole and the island acts as its mount. Cropping would cut data out
+   of the diagrams. */
+.photo {
+  object-fit: contain;
+}
+
+.videoLink {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gutter);
+  text-align: center;
+  color: var(--action-light);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.article {
+  padding: 24px var(--gutter);
+  max-width: 68ch;
+}
+
+.kicker {
+  color: var(--ink-soft);
+}
+
+.title {
+  font-size: 23px;
+  font-weight: 700;
+  margin: 8px 0 14px;
+  text-wrap: pretty;
+}
+
+.explanation {
+  font-family: var(--font-pt-serif), Georgia, serif;
+  font-size: 16px;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.credits {
+  margin: 24px 0 0;
+  border-top: 1px solid var(--rule);
+}
+
+.creditRow {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.creditValue {
+  margin: 0;
+  font-size: 14px;
+}
+
+.unavailable {
+  padding: 20px var(--gutter);
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.footer {
+  padding: 18px var(--gutter);
+}
+
+@media (min-width: 900px) {
+  .back {
+  padding: 12px var(--gutter);
+  border-bottom: 1px solid var(--rule);
+}
+
+.backLink {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.island {
+    aspect-ratio: 16 / 9;
+  }
+
+  .article {
+    padding: 32px var(--gutter);
+  }
+
+  .title {
+    font-size: 30px;
+  }
+
+  .explanation {
+    font-size: 17px;
+  }
+
+  .creditRow {
+    gap: 24px;
+  }
+}

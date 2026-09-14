@@ -78,6 +78,20 @@ export function getCloseApproaches(): Promise<CloseApproach[] | null> {
   return getJson<CloseApproach[]>("/close-approaches");
 }
 
+export interface AstronomyPicture {
+  date: string;
+  title: string;
+  explanation: string;
+  mediaType: "image" | "video";
+  url: string;
+  hdUrl: string | null;
+  credit: string | null;
+}
+
+export function getApod(): Promise<AstronomyPicture | null> {
+  return getJson<AstronomyPicture>("/apod");
+}
+
 export function getObject(designation: string): Promise<SmallBody | null> {
   return getJson<SmallBody>(`/objects/${encodeURIComponent(designation)}`);
 }
