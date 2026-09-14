@@ -1,0 +1,153 @@
+/* Two cells of the box, stacked, which owns the ground and the hairlines. */
+.pair {
+  display: grid;
+}
+
+.pair > * + * {
+  border-top: 1px solid var(--night-rule);
+}
+
+.cell {
+  margin: 0;
+  padding: 14px var(--gutter) 13px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* An orbit at a steep inclination fills this square; one in the ecliptic is a
+   flat line, so sizing it to the flat case would crop the steep ones. Capped so
+   a wide screen grows the map rather than the height of the whole box. */
+.plot {
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 1;
+  max-height: 100%;
+  margin: 0 auto;
+  min-height: 0;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 16px;
+  margin-bottom: 8px;
+}
+
+.kicker {
+  color: var(--night-ink);
+}
+
+.reading {
+  color: var(--paper);
+  letter-spacing: 0.08em;
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.caption {
+  color: var(--night-ink);
+  margin-top: 8px;
+  font-size: var(--text-1);
+}
+
+.earthOrbit {
+  fill: none;
+  stroke: var(--night-ink);
+  stroke-width: 1;
+}
+
+.bodyOrbit {
+  fill: none;
+  stroke: var(--paper);
+  stroke-width: 1.2;
+}
+
+.bodyOrbitRisk {
+  fill: none;
+  stroke: var(--risk);
+  stroke-width: 1.4;
+}
+
+/* The gap between the two bodies right now: the number above spells it out. */
+.separation {
+  stroke: #6b6358;
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+}
+
+.sun {
+  fill: #e8c46a;
+}
+
+.earth {
+  fill: none;
+  stroke: var(--paper);
+  stroke-width: 1.5;
+}
+
+.body {
+  fill: var(--paper);
+}
+
+.bodyRisk {
+  fill: var(--risk);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-top: 14px;
+  color: var(--night-ink);
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.keySun,
+.keyEarth,
+.keyBody,
+.keyBodyRisk {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.keySun {
+  background: #e8c46a;
+}
+
+.keyEarth {
+  border: 1.5px solid var(--paper);
+}
+
+.keyBody {
+  background: var(--paper);
+}
+
+.keyBodyRisk {
+  background: var(--risk);
+}
+
+@media (min-width: 900px) {
+  .pair {
+    grid-template-rows: 1fr 1fr;
+    height: 100%;
+  }
+
+  /* matches the map cell, so every heading in the box starts on the same line */
+  .cell {
+    padding: 16px var(--gutter) 15px;
+  }
+}
