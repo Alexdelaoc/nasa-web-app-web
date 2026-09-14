@@ -1,0 +1,235 @@
+.scaleKey {
+  padding: 14px var(--gutter) 9px;
+  font-size: 10px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-bottom: 2px solid var(--ink);
+}
+
+.table th {
+  text-align: left;
+  padding: 0 12px 8px 0;
+  border-bottom: 1px solid var(--ink);
+  white-space: nowrap;
+}
+
+.table thead {
+  display: none;
+}
+
+/* Móvil: cada fila es una tarjeta en dos columnas. */
+.table tr {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px 12px;
+  padding: var(--gutter);
+  border-bottom: 1px solid var(--rule);
+}
+
+.table td {
+  border-bottom: 0;
+  padding: 0;
+  vertical-align: middle;
+}
+
+/* A footnote, not a heading: it should be legible when looked for and easy to
+   skip past otherwise. */
+.caption {
+  caption-side: bottom;
+  text-align: left;
+  /* The table runs edge to edge on mobile, so the note needs its own gutter.
+     On wider screens the wrapper already provides it. */
+  padding: 10px var(--gutter) 0;
+  color: color-mix(in oklab, var(--ink) 55%, transparent);
+}
+
+.rowRisk {
+  background: var(--paper-raised);
+}
+
+.designation {
+  font-weight: 700;
+  font-size: 16px;
+  padding-top: 13px;
+}
+
+.distance {
+  font-size: 17px;
+  text-align: right;
+  padding-top: 13px;
+}
+
+.distanceRisk {
+  color: var(--risk);
+  font-weight: 700;
+}
+
+.unit {
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+
+.trackCell {
+  grid-column: 1 / -1;
+  padding: 8px 0 7px;
+}
+
+.track {
+  height: 5px;
+  background: var(--track);
+  position: relative;
+}
+
+.trackFill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--ink);
+}
+
+.trackFillRisk {
+  background: var(--risk);
+}
+
+.moon {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 1px;
+  background: var(--ink-soft);
+}
+
+.meta {
+  grid-column: 1;
+  font-size: 11px;
+  color: var(--ink-soft);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  align-items: center;
+}
+
+.flagCell {
+  grid-column: 2;
+  justify-self: end;
+  align-self: center;
+}
+
+.flagCell:empty {
+  display: none;
+}
+
+.badgeLong {
+  display: none;
+}
+
+.badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--risk);
+  border: 1px solid var(--risk);
+  padding: 1px 5px;
+}
+
+.secondary {
+  display: none;
+}
+
+.unavailable {
+  padding: 20px var(--gutter);
+  border-bottom: 2px solid var(--ink);
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+@media (min-width: 900px) {
+  .tableWrap {
+    padding: 22px var(--gutter) 0;
+    overflow-x: auto;
+  }
+
+  .caption {
+    padding-inline: 0;
+  }
+
+  .table thead {
+    display: table-header-group;
+  }
+
+  .table tbody {
+    display: table-row-group;
+  }
+
+  .table tr {
+    display: table-row;
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  .table td {
+    display: table-cell;
+    padding: 12px 12px 12px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* Two classes, so it outweighs the `.table td` padding here. */
+  .table .designation {
+    padding: 12px;
+  }
+
+  /* Keep the column heading over its own values. */
+  .table thead th:first-child {
+    padding-left: 12px;
+  }
+
+  .distance {
+    padding-top: 12px;
+    text-align: left;
+    font-size: 15px;
+  }
+
+  .trackCell {
+    width: 210px;
+  }
+
+  .track {
+    height: 6px;
+    width: 190px;
+  }
+
+  .meta {
+    display: table-cell;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  /* Its own column, so every badge starts at the same x whatever the length of
+     the approach details beside it. */
+  .flagCell,
+  .flagCell:empty {
+    display: table-cell;
+    white-space: nowrap;
+    padding-left: 14px;
+    margin-top: 0;
+    text-align: left;
+  }
+
+  .badgeShort {
+    display: none;
+  }
+
+  .badgeLong {
+    display: inline;
+  }
+
+  .secondary {
+    display: table-cell;
+    font-size: 13px;
+    text-align: right;
+    color: var(--ink);
+  }
+}
