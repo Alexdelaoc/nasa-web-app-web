@@ -1,0 +1,108 @@
+.term {
+  font: inherit;
+  color: var(--action);
+  background: none;
+  border: 0;
+  padding: 0;
+  text-decoration: underline dotted var(--action);
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.term:hover {
+  color: var(--ink);
+  text-decoration-color: var(--ink);
+}
+
+/* Bottom sheet on every width: the gesture is the same on touch and pointer. */
+.sheet {
+  margin: auto auto 0;
+  width: 100%;
+  max-width: 620px;
+  border: 0;
+  border-top: 2px solid var(--ink);
+  padding: 0;
+  background: var(--paper-raised);
+  color: var(--ink);
+
+  translate: 0 0;
+  transition: translate 180ms ease-out;
+}
+
+@starting-style {
+  .sheet[open] {
+    translate: 0 100%;
+  }
+}
+
+.sheet::backdrop {
+  background: rgba(22, 19, 15, 0.45);
+}
+
+@media (min-width: 900px) {
+  .sheet {
+    margin: auto;
+    border: 2px solid var(--ink);
+  }
+
+  .sheet[open] {
+    translate: 0 0;
+  }
+}
+
+/* The sheet still opens and closes, it just stops sliding. */
+@media (prefers-reduced-motion: reduce) {
+  .sheet {
+    transition: none;
+    translate: 0 0;
+  }
+}
+
+.sheetBody {
+  padding: 20px var(--gutter) 24px;
+}
+
+.kicker {
+  color: var(--ink-soft);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 6px 0 10px;
+}
+
+.definition {
+  font-family: var(--font-pt-serif), Georgia, serif;
+  font-size: 15px;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+}
+
+.allTerms {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.close {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--ink);
+  border: 0;
+  padding: 11px 20px;
+  cursor: pointer;
+}

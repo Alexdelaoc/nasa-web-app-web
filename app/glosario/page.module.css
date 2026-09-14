@@ -1,0 +1,58 @@
+.intro {
+  padding: 22px var(--gutter);
+  border-bottom: 2px solid var(--ink);
+}
+
+.lead {
+  font-family: var(--font-pt-serif), Georgia, serif;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-top: 8px;
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+
+.list {
+  margin: 0;
+}
+
+.entry {
+  padding: 18px var(--gutter);
+  border-bottom: 1px solid var(--rule);
+  scroll-margin-top: 20px;
+}
+
+.term {
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.definition {
+  font-family: var(--font-pt-serif), Georgia, serif;
+  font-size: 15px;
+  line-height: 1.55;
+  margin: 6px 0 0;
+  max-width: 68ch;
+  text-wrap: pretty;
+}
+
+.footer {
+  padding: 18px var(--gutter);
+}
+
+@media (min-width: 900px) {
+  .intro {
+    padding: 30px var(--gutter);
+  }
+
+  .entry {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 32px;
+    padding: 20px var(--gutter);
+  }
+
+  .definition {
+    margin: 0;
+  }
+}
