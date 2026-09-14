@@ -66,10 +66,10 @@ export default async function ImagenDelDia() {
       <figure className={styles.island}>
         {picture.mediaType === "image" ? (
           <Image
-            src={picture.url}
+            src={picture.hdUrl ?? picture.url}
             alt={picture.title}
             fill
-            sizes="(min-width: 900px) 900px, 100vw"
+            sizes="100vw"
             className={styles.photo}
             loading="eager"
             fetchPriority="high"
