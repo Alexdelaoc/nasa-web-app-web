@@ -1,0 +1,142 @@
+/* A cell of the box, which owns the ground and the hairlines around it. */
+.cell {
+  padding: 14px var(--gutter) 13px;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 16px;
+  margin-bottom: 10px;
+}
+
+.kicker {
+  color: var(--night-ink);
+  margin: 0;
+}
+
+.reading {
+  color: var(--paper);
+  letter-spacing: 0.08em;
+}
+
+/* The frame keeps the proportion of the footprint, and takes a fixed height on
+   a wide screen. It must never end up narrower than 4:3: `slice` on the svg
+   then crops the spare ground instead of rescaling, which is what keeps the
+   metres per pixel across the width equal to what the scale bar measures.
+   Setting `max-height` alongside `aspect-ratio` narrows the box instead, and
+   would break that. */
+.canvas {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  /* full bleed: the map runs to the edges of its cell, the text does not */
+  margin-inline: calc(var(--gutter) * -1);
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: var(--night);
+}
+
+/* Strokes keep their weight at any window width. */
+.blocks path,
+.streets path {
+  fill: none;
+  stroke: var(--night-ink);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.6;
+  stroke-linejoin: round;
+}
+
+.streets path {
+  stroke-linecap: round;
+}
+
+.rock {
+  fill: var(--paper);
+  fill-opacity: 0.1;
+  stroke: var(--paper);
+  stroke-width: 1.8;
+  vector-effect: non-scaling-stroke;
+  stroke-linejoin: round;
+}
+
+/* The smaller end of the estimate. */
+/* A mark for a position, never an area: no canopy is measured. */
+.tree {
+  fill: var(--night-ink);
+  fill-opacity: 0.7;
+  stroke: none;
+}
+
+.least {
+  fill: none;
+  stroke: var(--paper);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 5 4;
+  opacity: 0.75;
+  stroke-linejoin: round;
+}
+
+/* Above the map, so the line underneath is left to the attribution. */
+.scale {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+/* Both sit against the map, side by side, the way the scale bar sits above it.
+   Stacking them would leave whichever came second detached from the drawing. */
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 28px;
+  margin-top: 8px;
+}
+
+/* Keeps the credit to the right whether or not it shares the line with the
+   note; `justify-content` would send it back to the left once it wrapped. */
+.foot > span {
+  margin-left: auto;
+}
+
+.bar {
+  height: 1px;
+  background: var(--night-ink);
+  display: inline-block;
+  min-width: 24px;
+}
+
+.caption {
+  color: var(--night-ink);
+  font-size: var(--text-1);
+}
+
+.note {
+  font-family: var(--font-pt-serif), Georgia, serif;
+  font-size: var(--text-3);
+  line-height: 1.5;
+  color: var(--night-ink);
+  margin: 0;
+  flex: 1 1 22rem;
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+
+@media (min-width: 900px) {
+  .cell {
+    padding: 16px var(--gutter) 15px;
+  }
+
+  .canvas {
+    aspect-ratio: auto;
+    height: 430px;
+  }
+}
