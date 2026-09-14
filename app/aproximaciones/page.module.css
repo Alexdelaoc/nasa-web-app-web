@@ -1,0 +1,39 @@
+.head {
+  padding: 22px var(--gutter);
+  border-bottom: 2px solid var(--ink);
+}
+
+.kicker {
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+
+.lead {
+  font-family: var(--font-pt-serif), Georgia, serif;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-top: 10px;
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+
+.back {
+  padding: 14px var(--gutter);
+  border-bottom: 1px solid var(--rule);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.footer {
+  padding: 18px var(--gutter);
+}
+
+@media (min-width: 900px) {
+  .head {
+    padding: 30px var(--gutter);
+  }
+
+  .lead {
+    font-size: 17px;
+  }
+}
