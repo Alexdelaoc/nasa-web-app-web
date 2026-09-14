@@ -97,15 +97,6 @@ button:focus-visible {
   color: var(--ink-soft);
 }
 
-/* Glossary terms. The tap-to-explain sheet is not built yet; the native
-   tooltip is the interim behaviour. */
-abbr[title] {
-  color: var(--action);
-  text-decoration: underline dotted var(--action);
-  text-underline-offset: 3px;
-  cursor: help;
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

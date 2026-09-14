@@ -43,6 +43,46 @@ async function getJson<T>(path: string): Promise<T | null> {
   }
 }
 
+export interface OrbitalElements {
+  eccentricity: number | null;
+  semiMajorAxisAu: number | null;
+  perihelionAu: number | null;
+  aphelionAu: number | null;
+  inclinationDeg: number | null;
+  ascendingNodeDeg: number | null;
+  perihelionArgumentDeg: number | null;
+  meanAnomalyDeg: number | null;
+  periodDays: number | null;
+  epochJd: number | null;
+}
+
+export interface SmallBody {
+  designation: string;
+  fullName: string;
+  orbitClassCode: string | null;
+  orbitClassName: string | null;
+  isNearEarth: boolean;
+  isPotentiallyHazardous: boolean;
+  elements: OrbitalElements;
+  magnitudeH: number | null;
+  diameterKm: number | null;
+  albedo: number | null;
+  rotationPeriodHours: number | null;
+  spectralType: string | null;
+  firstObserved: string | null;
+  observationArcDays: number | null;
+  observationCount: number | null;
+}
+
 export function getCloseApproaches(): Promise<CloseApproach[] | null> {
   return getJson<CloseApproach[]>("/close-approaches");
+}
+
+export function getObject(designation: string): Promise<SmallBody | null> {
+  return getJson<SmallBody>(`/objects/${encodeURIComponent(designation)}`);
+}
+
+/** Designations carry spaces; URLs carry hyphens. */
+export function toSlug(designation: string): string {
+  return designation.trim().replace(/\s+/g, "-");
 }

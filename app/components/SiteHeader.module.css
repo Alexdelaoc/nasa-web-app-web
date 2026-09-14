@@ -1,0 +1,37 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 var(--gutter);
+  height: 52px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.wordmark {
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--ink);
+}
+
+.nav {
+  display: none;
+  gap: 30px;
+  font-size: 13px;
+}
+
+@media (min-width: 900px) {
+  .header {
+    height: 58px;
+  }
+
+  .wordmark {
+    font-size: 14px;
+    letter-spacing: 0.2em;
+  }
+
+  .nav {
+    display: flex;
+  }
+}

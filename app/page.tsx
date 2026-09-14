@@ -1,7 +1,9 @@
 import Link from "next/link";
-import { getCloseApproaches, type CloseApproach } from "@/lib/api";
+import { getCloseApproaches, toSlug, type CloseApproach } from "@/lib/api";
 import { formatNumber, formatUtc } from "@/lib/format";
 import { OrbitDiagram } from "./components/OrbitDiagram";
+import { SiteHeader } from "./components/SiteHeader";
+import { Term } from "./components/Term";
 import styles from "./page.module.css";
 
 /** The distance bar runs from the Earth to this many lunar distances. */
@@ -53,7 +55,11 @@ function DistanceTrack({ approach }: { approach: CloseApproach }) {
 function ApproachRow({ approach }: { approach: CloseApproach }) {
   return (
     <tr className={approach.insideLunarOrbit ? styles.rowRisk : undefined}>
-      <td className={styles.designation}>{approach.designation}</td>
+      <td className={styles.designation}>
+        <Link href={`/objetos/${toSlug(approach.designation)}`}>
+          {approach.designation}
+        </Link>
+      </td>
       <td
         className={`${styles.distance} numeric ${approach.insideLunarOrbit ? styles.distanceRisk : ""}`}
       >
@@ -65,6 +71,8 @@ function ApproachRow({ approach }: { approach: CloseApproach }) {
       </td>
       <td className={`${styles.meta} numeric`}>
         {formatUtc(approach.date)} · {formatNumber(approach.velocityKmS, 2)} km/s
+      </td>
+      <td className={styles.flagCell}>
         {approach.insideLunarOrbit ? (
           <span className={styles.badge}>Dentro de la órbita lunar</span>
         ) : null}
@@ -85,16 +93,7 @@ export default async function Home() {
 
   return (
     <main>
-      <header className={styles.header}>
-        <span className={styles.wordmark}>NASA WEB APP</span>
-        <nav className={styles.nav}>
-          <Link href="/sistema-solar">Sistema solar</Link>
-          <Link href="/impactos">Impactos</Link>
-          <Link href="/objetos">Catálogo</Link>
-          <Link href="/glosario">Glosario</Link>
-          <Link href="/imagen-del-dia">Imagen del día</Link>
-        </nav>
-      </header>
+      <SiteHeader />
 
       <div className={styles.introBand}>
         <p className={styles.intro}>
@@ -112,9 +111,7 @@ export default async function Home() {
             : `${approaches.length} objetos pasarán a menos de 0,05 `}
           {approaches !== null ? (
             <>
-              <abbr title="Unidad astronómica: la distancia media entre la Tierra y el Sol, unos 150 millones de kilómetros.">
-                UA
-              </abbr>{" "}
+              <Term id="ua">UA</Term>{" "}
               de la Tierra en los próximos 60 días. Ordenados por distancia
               mínima:
             </>
@@ -131,16 +128,14 @@ export default async function Home() {
           <div className={styles.scaleKey}>
             <span className="label">
               Distancia en{" "}
-              <abbr title="Distancia lunar: 384.400 km, la distancia media de la Tierra a la Luna.">
-                distancias lunares
-              </abbr>
+              <Term id="distancia-lunar">distancias lunares</Term>
             </span>
           </div>
 
           <div className={styles.tableWrap}>
             <table className={styles.table}>
-              <caption className="label" style={{ captionSide: "bottom", textAlign: "left", paddingTop: 10 }}>
-                │ en la barra = órbita de la Luna (1 DL = 384.400 km)
+              <caption className={`label ${styles.caption}`}>
+                La marca en la barra es la órbita de la Luna (1 DL = 384.400 km)
               </caption>
               <thead>
                 <tr className="label">
@@ -148,16 +143,13 @@ export default async function Home() {
                   <th>Distancia</th>
                   <th />
                   <th>Máxima aproximación</th>
+                  <th />
                   <th style={{ textAlign: "right" }}>
                     En{" "}
-                    <abbr title="Unidad astronómica: unos 150 millones de kilómetros.">
-                      UA
-                    </abbr>
+                    <Term id="ua">UA</Term>
                   </th>
                   <th style={{ textAlign: "right" }}>
-                    <abbr title="Magnitud absoluta: el brillo del objeto a una distancia estándar. Cuanto mayor es el número, más pequeño es el objeto.">
-                      Magnitud H
-                    </abbr>
+                    <Term id="magnitud-h">Magnitud H</Term>
                   </th>
                 </tr>
               </thead>

@@ -1,25 +1,3 @@
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 0 var(--gutter);
-  height: 52px;
-  border-bottom: 2px solid var(--ink);
-}
-
-.wordmark {
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.18em;
-}
-
-.nav {
-  display: none;
-  gap: 30px;
-  font-size: 13px;
-}
-
 .introBand {
   border-bottom: 1px solid var(--rule);
   padding: 18px var(--gutter);
@@ -77,13 +55,22 @@
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 2px 12px;
-  padding: 0 var(--gutter);
+  padding: var(--gutter);
   border-bottom: 1px solid var(--rule);
 }
 
 .table td {
   border-bottom: 0;
   padding: 0;
+}
+
+/* A footnote, not a heading: it should be legible when looked for and easy to
+   skip past otherwise. */
+.caption {
+  caption-side: bottom;
+  text-align: left;
+  padding-top: 10px;
+  color: color-mix(in oklab, var(--ink) 55%, transparent);
 }
 
 .rowRisk {
@@ -145,11 +132,19 @@
   grid-column: 1 / -1;
   font-size: 11px;
   color: var(--ink-soft);
-  padding-bottom: 13px;
   display: flex;
   flex-wrap: wrap;
   gap: 6px 10px;
   align-items: center;
+}
+
+.flagCell {
+  grid-column: 1 / -1;
+  margin-top: 4px;
+}
+
+.flagCell:empty {
+  display: none;
 }
 
 .badge {
@@ -251,20 +246,7 @@
 
 /* --- escritorio --- */
 @media (min-width: 900px) {
-  .header {
-    height: 58px;
-  }
-
-  .wordmark {
-    font-size: 14px;
-    letter-spacing: 0.2em;
-  }
-
-  .nav {
-    display: flex;
-  }
-
-  .introBand {
+        .introBand {
     padding: 26px var(--gutter);
   }
 
@@ -301,7 +283,16 @@
     border-bottom: 1px solid var(--rule);
   }
 
-  .designation,
+  /* Two classes, so it outweighs the `.table td` padding here. */
+  .table .designation {
+    padding: 12px;
+  }
+
+  /* Keep the column heading over its own values. */
+  .table thead th:first-child {
+    padding-left: 12px;
+  }
+
   .distance {
     padding-top: 12px;
   }
@@ -324,6 +315,16 @@
     display: table-cell;
     font-size: 13px;
     white-space: nowrap;
+  }
+
+  /* Its own column, so every badge starts at the same x whatever the length of
+     the approach details beside it. */
+  .flagCell,
+  .flagCell:empty {
+    display: table-cell;
+    white-space: nowrap;
+    padding-left: 14px;
+    margin-top: 0;
   }
 
   .secondary {
