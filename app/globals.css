@@ -1,0 +1,117 @@
+/*
+ * Design tokens. The two accents are semantic and must not be used decoratively:
+ *   --risk   only marks danger or proximity
+ *   --action only marks something you can interact with
+ */
+:root {
+  --paper: #e8e2d5;
+  --paper-raised: #f6efe0;
+  --ink: #16130f;
+  --ink-soft: #6b655b;
+  --rule: #cfc7b6;
+  --track: #dad2c1;
+  --risk: #d6301f;
+  --action: #1b3a6b;
+  --action-light: #8fa8cc;
+  --night: #0f0d0b;
+  --night-ink: #8b8378;
+
+  --gutter: 16px;
+  color-scheme: light;
+}
+
+@media (min-width: 900px) {
+  :root {
+    --gutter: 40px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-pt-sans), Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p,
+figure {
+  margin: 0;
+}
+
+/* No display face by design: hierarchy comes from rules, boxes and space. */
+h1 {
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 900px) {
+  h1 {
+    font-size: 32px;
+    letter-spacing: -0.015em;
+  }
+}
+
+a {
+  color: var(--action);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--ink);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--action);
+  outline-offset: 2px;
+}
+
+/* Every number in the app is tabular so columns line up. */
+.numeric {
+  font-family: var(--font-pt-mono), "Courier New", monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* Glossary terms. The tap-to-explain sheet is not built yet; the native
+   tooltip is the interim behaviour. */
+abbr[title] {
+  color: var(--action);
+  text-decoration: underline dotted var(--action);
+  text-underline-offset: 3px;
+  cursor: help;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
