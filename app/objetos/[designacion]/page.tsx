@@ -4,6 +4,7 @@ import { SiteHeader } from "../../components/SiteHeader";
 import { Term } from "../../components/Term";
 import { getObject, type SmallBody } from "@/lib/api";
 import { formatNumber } from "@/lib/format";
+import { orbitClassName } from "@/lib/orbit-classes";
 import styles from "./page.module.css";
 
 type Params = { designacion: string };
@@ -24,7 +25,8 @@ export async function generateMetadata({
     return { title: fromSlug(designacion) };
   }
 
-  const klass = body.orbitClassName ? `Asteroide de clase ${body.orbitClassName}` : "Cuerpo menor";
+  const name = orbitClassName(body.orbitClassCode, body.orbitClassName);
+  const klass = name ? `Asteroide de clase ${name}` : "Cuerpo menor";
 
   return {
     title: body.fullName,
@@ -103,6 +105,7 @@ export default async function ObjectPage({
   }
 
   const { elements } = body;
+  const className = orbitClassName(body.orbitClassCode, body.orbitClassName);
 
   return (
     <main>
@@ -112,9 +115,9 @@ export default async function ObjectPage({
         <p className={`label ${styles.kicker}`}>Ficha de objeto</p>
         <h1>{body.fullName}</h1>
         <div className={styles.flags}>
-          {body.orbitClassName ? (
+          {className ? (
             <span className={styles.flag}>
-              <Term id="clase-orbital">Clase {body.orbitClassName}</Term>
+              <Term id="clase-orbital">Clase {className}</Term>
             </span>
           ) : null}
           {body.isNearEarth ? (
