@@ -9,12 +9,27 @@
   --ink: #16130f;
   --ink-soft: #6b655b;
   --rule: #cfc7b6;
+  /* Dotted rules need more contrast than solid ones: the gaps eat half the line. */
+  --rule-dotted: #a89d87;
   --track: #dad2c1;
   --risk: #d6301f;
   --action: #1b3a6b;
   --action-light: #8fa8cc;
   --night: #0f0d0b;
   --night-ink: #8b8378;
+  /* Hairline on a dark ground; --ink is indistinguishable from --night. */
+  --night-rule: rgba(139, 131, 120, 0.22);
+
+  /* Type scale, ratio 1.2 from a 16 px base. In rem, so it follows the
+     reader's own font size. */
+  --text-1: 0.579rem;
+  --text-2: 0.694rem;
+  --text-3: 0.833rem;
+  --text-4: 1rem;
+  --text-5: 1.2rem;
+  --text-6: 1.44rem;
+  --text-7: 1.728rem;
+  --text-8: 2.074rem;
 
   --gutter: 16px;
   color-scheme: light;
@@ -41,7 +56,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-pt-sans), Arial, sans-serif;
-  font-size: 16px;
+  font-size: var(--text-4);
   line-height: 1.45;
   -webkit-font-smoothing: antialiased;
 }
@@ -56,14 +71,14 @@ figure {
 
 /* No display face by design: hierarchy comes from rules, boxes and space. */
 h1 {
-  font-size: 23px;
+  font-size: var(--text-6);
   font-weight: 700;
   letter-spacing: -0.01em;
 }
 
 @media (min-width: 900px) {
   h1 {
-    font-size: 32px;
+    font-size: var(--text-8);
     letter-spacing: -0.015em;
   }
 }
@@ -90,7 +105,7 @@ button:focus-visible {
 }
 
 .label {
-  font-size: 11px;
+  font-size: var(--text-2);
   font-weight: 700;
   letter-spacing: 0.13em;
   text-transform: uppercase;

@@ -9,7 +9,7 @@
 }
 
 .backLink {
-  font-size: 13px;
+  font-size: var(--text-3);
   font-weight: 700;
 }
 
@@ -39,7 +39,7 @@
   text-align: center;
   color: var(--action-light);
   font-weight: 700;
-  font-size: 15px;
+  font-size: var(--text-4);
 }
 
 .article {
@@ -52,7 +52,7 @@
 }
 
 .title {
-  font-size: 23px;
+  font-size: var(--text-6);
   font-weight: 700;
   margin: 8px 0 14px;
   text-wrap: pretty;
@@ -60,7 +60,7 @@
 
 .explanation {
   font-family: var(--font-pt-serif), Georgia, serif;
-  font-size: 16px;
+  font-size: var(--text-4);
   line-height: 1.6;
   text-wrap: pretty;
 }
@@ -80,13 +80,13 @@
 
 .creditValue {
   margin: 0;
-  font-size: 14px;
+  font-size: var(--text-3);
 }
 
 .unavailable {
   padding: 20px var(--gutter);
   color: var(--ink-soft);
-  font-size: 14px;
+  font-size: var(--text-3);
 }
 
 .footer {
@@ -100,7 +100,7 @@
 }
 
 .backLink {
-  font-size: 13px;
+  font-size: var(--text-3);
   font-weight: 700;
 }
 
@@ -113,11 +113,7 @@
   }
 
   .title {
-    font-size: 30px;
-  }
-
-  .explanation {
-    font-size: 17px;
+    font-size: var(--text-7);
   }
 
   .creditRow {

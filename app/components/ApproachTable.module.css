@@ -1,6 +1,6 @@
 .scaleKey {
   padding: 14px var(--gutter) 9px;
-  font-size: 10px;
+  font-size: var(--text-1);
 }
 
 .table {
@@ -52,12 +52,12 @@
 
 .designation {
   font-weight: 700;
-  font-size: 16px;
+  font-size: var(--text-4);
   padding-top: 13px;
 }
 
 .distance {
-  font-size: 17px;
+  font-size: var(--text-5);
   text-align: right;
   padding-top: 13px;
 }
@@ -68,7 +68,7 @@
 }
 
 .unit {
-  font-size: 11px;
+  font-size: var(--text-2);
   color: var(--ink-soft);
 }
 
@@ -103,7 +103,7 @@
 
 .meta {
   grid-column: 1;
-  font-size: 11px;
+  font-size: var(--text-2);
   color: var(--ink-soft);
   display: flex;
   flex-wrap: wrap;
@@ -126,7 +126,7 @@
 }
 
 .badge {
-  font-size: 9px;
+  font-size: var(--text-1);
   font-weight: 700;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -143,7 +143,7 @@
   padding: 20px var(--gutter);
   border-bottom: 2px solid var(--ink);
   color: var(--ink-soft);
-  font-size: 14px;
+  font-size: var(--text-3);
 }
 
 @media (min-width: 900px) {
@@ -189,7 +189,7 @@
   .distance {
     padding-top: 12px;
     text-align: left;
-    font-size: 15px;
+    font-size: var(--text-4);
   }
 
   .trackCell {
@@ -203,7 +203,7 @@
 
   .meta {
     display: table-cell;
-    font-size: 13px;
+    font-size: var(--text-3);
     white-space: nowrap;
   }
 
@@ -228,7 +228,7 @@
 
   .secondary {
     display: table-cell;
-    font-size: 13px;
+    font-size: var(--text-3);
     text-align: right;
     color: var(--ink);
   }

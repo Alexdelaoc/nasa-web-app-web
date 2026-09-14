@@ -48,7 +48,7 @@
 
 .apodTitle {
   color: var(--paper);
-  font-size: 15px;
+  font-size: var(--text-4);
   font-weight: 700;
   line-height: 1.25;
   text-wrap: pretty;
@@ -57,7 +57,7 @@
 .intro {
   padding: 18px var(--gutter);
   font-family: var(--font-pt-serif), Georgia, serif;
-  font-size: 16px;
+  font-size: var(--text-4);
   line-height: 1.5;
   text-wrap: pretty;
   max-width: 62ch;
@@ -68,7 +68,7 @@
 }
 
 .questionNote {
-  font-size: 13px;
+  font-size: var(--text-3);
   color: var(--ink-soft);
   margin-top: 5px;
 }
@@ -76,7 +76,7 @@
 .more {
   padding: 13px var(--gutter);
   border-bottom: 1px solid var(--rule);
-  font-size: 14px;
+  font-size: var(--text-3);
   font-weight: 700;
 }
 
@@ -99,14 +99,14 @@
 
 .islandLink {
   color: var(--action-light);
-  font-size: 13px;
+  font-size: var(--text-3);
   font-weight: 700;
   white-space: nowrap;
 }
 
 .islandFoot {
   color: var(--night-ink);
-  font-size: 11px;
+  font-size: var(--text-2);
   margin-top: 10px;
 }
 
@@ -128,17 +128,17 @@
 }
 
 .entryNumber {
-  font-size: 12px;
+  font-size: var(--text-2);
   color: var(--ink-soft);
 }
 
 .entryTitle {
   font-weight: 700;
-  font-size: 15px;
+  font-size: var(--text-4);
 }
 
 .entryNote {
-  font-size: 12px;
+  font-size: var(--text-2);
   color: var(--ink-soft);
   margin-top: 2px;
 }
@@ -146,7 +146,7 @@
 .footer {
   padding: 18px var(--gutter);
   line-height: 1.9;
-  font-size: 10px;
+  font-size: var(--text-1);
 }
 
 /* --- escritorio --- */
@@ -159,7 +159,6 @@
 
   .intro {
     padding: 26px var(--gutter);
-    font-size: 17px;
   }
 
   .apodLink {
@@ -190,11 +189,11 @@
   }
 
   .entryTitle {
-    font-size: 16px;
+    font-size: var(--text-4);
   }
 
   .entryNote {
-    font-size: 13px;
+    font-size: var(--text-3);
   }
 
   .island {

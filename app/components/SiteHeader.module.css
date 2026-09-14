@@ -10,7 +10,7 @@
 
 .wordmark {
   font-weight: 700;
-  font-size: 13px;
+  font-size: var(--text-3);
   letter-spacing: 0.18em;
   color: var(--ink);
 }
@@ -18,7 +18,7 @@
 .nav {
   display: none;
   gap: 30px;
-  font-size: 13px;
+  font-size: var(--text-3);
 }
 
 @media (min-width: 900px) {
@@ -27,7 +27,7 @@
   }
 
   .wordmark {
-    font-size: 14px;
+    font-size: var(--text-3);
     letter-spacing: 0.2em;
   }
 
