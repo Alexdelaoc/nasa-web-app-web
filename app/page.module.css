@@ -1,0 +1,372 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 var(--gutter);
+  height: 52px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.wordmark {
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+}
+
+.nav {
+  display: none;
+  gap: 30px;
+  font-size: 13px;
+}
+
+.introBand {
+  border-bottom: 1px solid var(--rule);
+  padding: 18px var(--gutter);
+}
+
+.intro {
+  font-family: var(--font-pt-serif), Georgia, serif;
+  font-size: 16px;
+  line-height: 1.5;
+  text-wrap: pretty;
+  max-width: 62ch;
+}
+
+.question {
+  padding: 20px var(--gutter) 12px;
+}
+
+.questionNote {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 5px;
+}
+
+.scaleKey {
+  padding: 0 var(--gutter) 9px;
+  font-size: 10px;
+}
+
+/* --- tabla --- */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-bottom: 2px solid var(--ink);
+}
+
+.table th {
+  text-align: left;
+  padding: 0 12px 8px 0;
+  border-bottom: 1px solid var(--ink);
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 13px 12px 13px 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: middle;
+}
+
+.table thead {
+  display: none;
+}
+
+/* Móvil: cada fila es una tarjeta en dos columnas. */
+.table tr {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px 12px;
+  padding: 0 var(--gutter);
+  border-bottom: 1px solid var(--rule);
+}
+
+.table td {
+  border-bottom: 0;
+  padding: 0;
+}
+
+.rowRisk {
+  background: var(--paper-raised);
+}
+
+.designation {
+  font-weight: 700;
+  font-size: 16px;
+  padding-top: 13px;
+}
+
+.distance {
+  font-size: 17px;
+  text-align: right;
+  padding-top: 13px;
+}
+
+.distanceRisk {
+  color: var(--risk);
+  font-weight: 700;
+}
+
+.unit {
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+
+.trackCell {
+  grid-column: 1 / -1;
+  padding: 8px 0 7px;
+}
+
+.track {
+  height: 5px;
+  background: var(--track);
+  position: relative;
+}
+
+.trackFill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--ink);
+}
+
+.trackFillRisk {
+  background: var(--risk);
+}
+
+.moon {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 1px;
+  background: var(--ink-soft);
+}
+
+.meta {
+  grid-column: 1 / -1;
+  font-size: 11px;
+  color: var(--ink-soft);
+  padding-bottom: 13px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  align-items: center;
+}
+
+.badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--risk);
+  border: 1px solid var(--risk);
+  padding: 1px 5px;
+}
+
+.secondary {
+  display: none;
+}
+
+.more {
+  padding: 13px var(--gutter);
+  border-bottom: 1px solid var(--rule);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.unavailable {
+  padding: 20px var(--gutter);
+  border-bottom: 2px solid var(--ink);
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+/* --- isla oscura --- */
+.island {
+  background: var(--night);
+  padding: 16px var(--gutter);
+}
+
+.islandHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.islandTitle {
+  color: var(--night-ink);
+}
+
+.islandLink {
+  color: var(--action-light);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.islandFoot {
+  color: var(--night-ink);
+  font-size: 11px;
+  margin-top: 10px;
+}
+
+.diagram {
+  width: 100%;
+  height: 150px;
+  display: block;
+  margin-top: 8px;
+}
+
+/* --- índice --- */
+.entry {
+  display: flex;
+  color: inherit;
+  align-items: baseline;
+  gap: 12px;
+  padding: 15px var(--gutter);
+  border-bottom: 1px solid var(--rule);
+}
+
+.entryNumber {
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.entryTitle {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.entryNote {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-top: 2px;
+}
+
+.footer {
+  padding: 18px var(--gutter);
+  line-height: 1.9;
+  font-size: 10px;
+}
+
+/* --- escritorio --- */
+@media (min-width: 900px) {
+  .header {
+    height: 58px;
+  }
+
+  .wordmark {
+    font-size: 14px;
+    letter-spacing: 0.2em;
+  }
+
+  .nav {
+    display: flex;
+  }
+
+  .introBand {
+    padding: 26px var(--gutter);
+  }
+
+  .intro {
+    font-size: 17px;
+  }
+
+  .question {
+    padding: 30px var(--gutter) 0;
+  }
+
+  .tableWrap {
+    padding: 22px var(--gutter) 0;
+    overflow-x: auto;
+  }
+
+  .table thead {
+    display: table-header-group;
+  }
+
+  .table tbody {
+    display: table-row-group;
+  }
+
+  .table tr {
+    display: table-row;
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  .table td {
+    display: table-cell;
+    padding: 12px 12px 12px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .designation,
+  .distance {
+    padding-top: 12px;
+  }
+
+  .distance {
+    text-align: left;
+    font-size: 15px;
+  }
+
+  .trackCell {
+    width: 210px;
+  }
+
+  .track {
+    height: 6px;
+    width: 190px;
+  }
+
+  .meta {
+    display: table-cell;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .secondary {
+    display: table-cell;
+    font-size: 13px;
+    text-align: right;
+    color: var(--ink);
+  }
+
+  .islandRow {
+    display: grid;
+    grid-template-columns: 620px 1fr;
+    border-top: 2px solid var(--ink);
+  }
+
+  .indexColumn {
+    border-right: 1px solid var(--rule);
+  }
+
+  .entry {
+    padding: 17px var(--gutter);
+  }
+
+  .entryTitle {
+    font-size: 16px;
+  }
+
+  .entryNote {
+    font-size: 13px;
+  }
+
+  .island {
+    padding: 22px 30px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .diagram {
+    flex-grow: 1;
+    height: auto;
+  }
+}
+
+.entry:hover .entryTitle {
+  color: var(--action);
+}
