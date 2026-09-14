@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SiteHeader } from "../../components/SiteHeader";
+import { OrbitChart } from "./OrbitChart";
+import { CityFootprint } from "./CityFootprint";
 import { Term } from "../../components/Term";
 import { getObject, type SmallBody } from "@/lib/api";
 import { formatNumber } from "@/lib/format";
@@ -111,6 +114,10 @@ export default async function ObjectPage({
     <main>
       <SiteHeader />
 
+      <nav className={styles.back}>
+        <Link href="/">← Volver a la portada</Link>
+      </nav>
+
       <div className={styles.head}>
         <p className={`label ${styles.kicker}`}>Ficha de objeto</p>
         <h1>{body.fullName}</h1>
@@ -133,94 +140,103 @@ export default async function ObjectPage({
         </div>
       </div>
 
-      <div className={styles.columns}>
-        <section className={styles.block}>
-          <h2 className={`label ${styles.blockTitle}`}>Elementos orbitales</h2>
-          <dl className={styles.rows}>
-            <Row
-              label="Excentricidad"
-              term="excentricidad"
-              value={optional(elements.eccentricity, 4)}
-            />
-            <Row
-              label="Semieje mayor"
-              term="semieje-mayor"
-              value={optional(elements.semiMajorAxisAu, 4, " UA")}
-            />
-            <Row
-              label="Perihelio"
-              term="perihelio"
-              value={optional(elements.perihelionAu, 4, " UA")}
-            />
-            <Row
-              label="Afelio"
-              term="afelio"
-              value={optional(elements.aphelionAu, 4, " UA")}
-            />
-            <Row
-              label="Inclinación"
-              term="inclinacion"
-              value={optional(elements.inclinationDeg, 3, "°")}
-            />
-            <Row
-              label="Nodo ascendente"
-              term="nodo-ascendente"
-              value={optional(elements.ascendingNodeDeg, 3, "°")}
-            />
-            <Row
-              label="Argumento del perihelio"
-              term="argumento-del-perihelio"
-              value={optional(elements.perihelionArgumentDeg, 3, "°")}
-            />
-            <Row
-              label="Anomalía media"
-              term="anomalia-media"
-              value={optional(elements.meanAnomalyDeg, 3, "°")}
-            />
-            <Row
-              label="Período orbital"
-              value={optional(elements.periodDays, 1, " días")}
-            />
-            <Row
-              label="Época"
-              term="epoca"
-              value={optional(elements.epochJd, 1, " DJ")}
-            />
-          </dl>
-        </section>
+      {/* Source order is the order the box stacks in on a phone; the grid
+          places the cells on wider screens. */}
+      <div className={styles.bento}>
+        <div className={styles.cellOrbits}>
+          <OrbitChart body={body} />
+        </div>
 
-        <div>
-          <section className={styles.block}>
-            <h2 className={`label ${styles.blockTitle}`}>Brillo y tamaño</h2>
-            <dl className={styles.rows}>
-              <Row
-                label="Magnitud absoluta"
-                term="magnitud-h"
-                value={optional(body.magnitudeH, 2)}
-              />
-            </dl>
-          </section>
+        <div className={styles.cellMap}>
+          <CityFootprint body={body} />
+        </div>
 
-          <PhysicalRows body={body} />
+        <div className={styles.cellData}>
+          <div className={styles.columns}>
+            <section className={styles.block}>
+              <h2 className={`label ${styles.blockTitle}`}>Elementos orbitales</h2>
+              <dl className={styles.rows}>
+                <Row
+                  label="Excentricidad"
+                  term="excentricidad"
+                  value={optional(elements.eccentricity, 4)}
+                />
+                <Row
+                  label="Semieje mayor"
+                  term="semieje-mayor"
+                  value={optional(elements.semiMajorAxisAu, 4, " UA")}
+                />
+                <Row
+                  label="Perihelio"
+                  term="perihelio"
+                  value={optional(elements.perihelionAu, 4, " UA")}
+                />
+                <Row
+                  label="Afelio"
+                  term="afelio"
+                  value={optional(elements.aphelionAu, 4, " UA")}
+                />
+                <Row
+                  label="Inclinación"
+                  term="inclinacion"
+                  value={optional(elements.inclinationDeg, 3, "°")}
+                />
+                <Row
+                  label="Nodo ascendente"
+                  term="nodo-ascendente"
+                  value={optional(elements.ascendingNodeDeg, 3, "°")}
+                />
+                <Row
+                  label="Argumento del perihelio"
+                  term="argumento-del-perihelio"
+                  value={optional(elements.perihelionArgumentDeg, 3, "°")}
+                />
+                <Row
+                  label="Anomalía media"
+                  term="anomalia-media"
+                  value={optional(elements.meanAnomalyDeg, 3, "°")}
+                />
+                <Row
+                  label="Período orbital"
+                  value={optional(elements.periodDays, 1, " días")}
+                />
+                <Row
+                  label="Época"
+                  term="epoca"
+                  value={optional(elements.epochJd, 1, " DJ")}
+                />
+              </dl>
+            </section>
 
-          <section className={styles.block}>
-            <h2 className={`label ${styles.blockTitle}`}>Observación</h2>
-            <dl className={styles.rows}>
-              <Row
-                label="Primera observación"
-                value={body.firstObserved ?? "—"}
-              />
-              <Row
-                label="Arco de observación"
-                term="arco-de-observacion"
-                value={optional(body.observationArcDays, 0, " días")}
-              />
-              <Row
-                label="Observaciones usadas"
-                value={optional(body.observationCount, 0)}
-              />
-            </dl>
-          </section>
+            <section className={styles.block}>
+              <h2 className={`label ${styles.blockTitle}`}>Brillo y tamaño</h2>
+              <dl className={styles.rows}>
+                <Row
+                  label="Magnitud absoluta"
+                  term="magnitud-h"
+                  value={optional(body.magnitudeH, 2)}
+                />
+              </dl>
+            </section>
+
+            <PhysicalRows body={body} />
+
+            <section className={styles.block}>
+              <h2 className={`label ${styles.blockTitle}`}>Observación</h2>
+              <dl className={styles.rows}>
+                <Row label="Primera observación" value={body.firstObserved ?? "—"} />
+                <Row
+                  label="Arco de observación"
+                  term="arco-de-observacion"
+                  value={optional(body.observationArcDays, 0, " días")}
+                />
+                <Row
+                  label="Observaciones usadas"
+                  value={optional(body.observationCount, 0)}
+                />
+              </dl>
+            </section>
+          </div>
         </div>
       </div>
 

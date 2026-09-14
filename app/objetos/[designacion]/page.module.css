@@ -1,3 +1,10 @@
+.back {
+  padding: 12px var(--gutter);
+  border-bottom: 1px solid var(--rule);
+  font-size: var(--text-3);
+  font-weight: 700;
+}
+
 .head {
   padding: 22px var(--gutter);
   border-bottom: 2px solid var(--ink);
@@ -17,7 +24,7 @@
 
 .flag,
 .flagRisk {
-  font-size: 12px;
+  font-size: var(--text-2);
   border: 1px solid var(--rule);
   padding: 4px 9px;
 }
@@ -27,13 +34,25 @@
   color: var(--risk);
 }
 
-.block {
-  border-bottom: 1px solid var(--rule);
-  padding: 18px var(--gutter);
+.columns {
+  display: grid;
+  gap: 0 34px;
+  align-items: start;
+  padding: 16px var(--gutter) 4px;
 }
 
+.block {
+  break-inside: avoid;
+  padding: 0 0 16px;
+}
+
+/* Reads as a column head rather than as one more label: the ink of the data it
+   heads, and a solid rule under it against the dotted ones between the rows. */
 .blockTitle {
-  margin-bottom: 10px;
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 7px;
+  margin-bottom: 4px;
 }
 
 .rows {
@@ -46,7 +65,7 @@
   justify-content: space-between;
   gap: 16px;
   padding: 7px 0;
-  border-bottom: 1px dotted var(--rule);
+  border-bottom: 2px dotted var(--rule-dotted);
 }
 
 .row:last-child {
@@ -54,12 +73,12 @@
 }
 
 .rowLabel {
-  font-size: 14px;
+  font-size: var(--text-3);
 }
 
 .rowValue {
   margin: 0;
-  font-size: 14px;
+  font-size: var(--text-3);
   text-align: right;
   white-space: nowrap;
 }
@@ -68,21 +87,123 @@
   padding: 18px var(--gutter);
 }
 
+/* Map, orbits and data as cells of one box, separated by hairlines. */
+.bento {
+  background: var(--night);
+}
+
+.bento > * + * {
+  border-top: 1px solid var(--night-rule);
+}
+
+.cellData {
+  background: var(--paper);
+}
+
+@media (min-width: 900px) {
+  .bento {
+    display: grid;
+    grid-template-columns: 1.86fr 1fr;
+    /* `auto auto`, not `auto 1fr`: when the data needs more height than the
+       two orbits, it takes it instead of being cut off at the cell edge. */
+    grid-template-rows: auto auto;
+    max-width: 1900px;
+    margin-inline: auto;
+    border: 1px solid var(--night-rule);
+  }
+
+  .bento > * + * {
+    border-top: 0;
+  }
+
+  .cellMap {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .cellData {
+    grid-column: 1;
+    grid-row: 2;
+    border-top: 1px solid var(--night-rule);
+  }
+
+  .cellOrbits {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    border-left: 1px solid var(--night-rule);
+  }
+}
+
 @media (min-width: 900px) {
   .head {
     padding: 30px var(--gutter);
   }
 
   .columns {
-    display: grid;
     grid-template-columns: 1fr 1fr;
+    padding: 18px var(--gutter) 6px;
   }
 
-  .columns > .block {
-    border-right: 1px solid var(--rule);
-  }
-
-  .block {
-    padding: 22px var(--gutter);
+  /* The orbital elements run to ten rows against three or four in the others,
+     so that block takes the first column outright and the rest stack beside it
+     instead of starting below its full height. */
+  .columns > :first-child {
+    grid-column: 1;
+    grid-row: span 3;
   }
 }
+
+/* Two columns: the rule goes on the container, because the blocks stacked in
+   the second column would draw it in pieces with a gap at every join. */
+@media (min-width: 900px) and (max-width: 1699px) {
+  .columns {
+    position: relative;
+  }
+
+  .columns::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 16px;
+    border-left: 2px dotted var(--rule-dotted);
+  }
+}
+
+/* One block per column, once there is width for four of them without breaking a
+   label across two lines. Their heights differ enough that letting the browser
+   distribute them moves a block from one column to the next as the window
+   changes, and leaves a column empty when there are fewer blocks than columns. */
+@media (min-width: 1700px) {
+  .columns {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    gap: 0;
+    /* so every column rule runs the full height of the tallest block */
+    align-items: stretch;
+  }
+
+  .columns > :first-child {
+    grid-row: auto;
+  }
+
+  /* A rule between the columns, matching the one between the rows, so the
+     whole block reads as a table rather than as separate lists. */
+  .block {
+    padding: 0 20px 16px;
+  }
+
+  .block:first-child {
+    padding-left: 0;
+  }
+
+  .block:last-child {
+    padding-right: 0;
+  }
+
+  .block + .block {
+    border-left: 2px dotted var(--rule-dotted);
+  }
+}
+
