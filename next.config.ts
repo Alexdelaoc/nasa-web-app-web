@@ -2,8 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    // APOD serves its pictures straight from its own host.
-    remotePatterns: [{ protocol: "https", hostname: "apod.nasa.gov" }],
+    // APOD pictures come from the asset host of science.nasa.gov, under several
+    // paths and with the size in the query string.
+    remotePatterns: [{ protocol: "https", hostname: "assets.science.nasa.gov" }],
   },
 };
 
